@@ -17,7 +17,10 @@ const client = new MPPClient("http://www.multiplayerpiano.com", undefined);
 client.start();
 
 client.on("hi", () => {
-  client.sendArray([{m:'userset', set:{name:"dvdbot [dvd!help](by Hri7566)"}}]);
+  setTimeout(function() {
+    client.sendArray([{m:'userset', set:{name:"dvdbot [dvd!help](made by Hri7566)"}}]);
+  })
+  
   client.setChannel("✧𝓡𝓟 𝓡𝓸𝓸𝓶✧");
 });
 
@@ -28,6 +31,7 @@ function chat(string) {
 var ctoggle = true;
 
 var cursormode = "dvd";
+
 
 client.on("a", (msg) => {
   let args = msg.a.split(' ');
@@ -93,6 +97,4 @@ var cursorupdate = setInterval(function() {
       }
       break;
   }
-  
-  
 }, 25);
