@@ -27,6 +27,8 @@ function chat(string) {
 
 var ctoggle = true;
 
+var cursormode = "dvd";
+
 client.on("a", (msg) => {
   let args = msg.a.split(' ');
   let cmd = args[0].toLowerCase();
@@ -34,9 +36,25 @@ client.on("a", (msg) => {
   
   switch (cmd) {
     case "dvd!help":
-      chat("not finished :)");
+      chat("cmds: dvd!help // dvd!cursor");
       break;
-    case "dvd!cursor"
+    case "dvd!cursor":
+      if (!argcat || argcat == "") {
+        chat("Modes: on // off");
+      } else {
+        switch (argcat) {
+          case "on":
+            ctoggle = true;
+            pos = {x: 5, y: 5};
+            cursormode = "dvd";
+            break;
+          case "off":
+            ctoggle = false;
+            cursormode = "none";
+            break;
+        }
+      }
+      break;
   }
 });
 
@@ -47,24 +65,30 @@ var cursor = setInterval(function() {
     if (ctoggle == true) {
         client.sendArray([{m:'m', x: client.getOwnParticipant().x = pos.x + 50, y: client.getOwnParticipant().y = pos.y + 50}])
     } else {
-        pos.x = 200;
-        pos.y = 200;
+        pos.x = -150;
+        pos.y = -150;
     }
 });
 
 var cursorupdate = setInterval(function() {
-    pos.x += vel.x;
-    pos.y += vel.y;
-    if (pos.x >= 50) {
-        vel.x = -vel.x;
-    }
-    if (pos.y >= 50) {
-        vel.y = -vel.y;
-    }
-    if (pos.x <= -50) {
-        vel.x = -vel.x;
-    }
-    if (pos.y <= -50) {
-        vel.y = -vel.y;
-    }
+  switch (cursormode) {
+    case "dvd":
+      pos.x += vel.x;
+      pos.y += vel.y;
+      if (pos.x >= 50) {
+          vel.x = -vel.x;
+      }
+      if (pos.y >= 50) {
+          vel.y = -vel.y;
+      }
+      if (pos.x <= -50) {
+          vel.x = -vel.x;
+      }
+      if (pos.y <= -50) {
+          vel.y = -vel.y;
+      }
+      break;
+    case "off":
+      
+  }
 }, 25);
