@@ -40,7 +40,7 @@ client.on("a", (msg) => {
   
   switch (cmd) {
     case "dvd!help":
-      chat("cmds: dvd!help // dvd!cursor");
+      chat("cmds: dvd!help // dvd!cursor // dvd!stats");
       break;
     case "dvd!cursor":
       if (!argcat || argcat == "") {
@@ -97,19 +97,14 @@ var cursorupdate = setInterval(function() {
           vel.y = -vel.y;
       }
       if ((pos.x >= 50) && (pos.y >= 50)) {
-        console.log("corner hit");
         cornerhits += 1;
       } else if ((pos.x >= 50) && (pos.y <= -50)) {
-        console.log("corner hit");
         cornerhits += 1;
       } else if ((pos.x <= -50) && (pos.y <= -50)) {
-        console.log("corner hit");
         cornerhits += 1;
       } else if ((pos.x <= -50) && (pos.y >= 50)) {
-        console.log("corner hit");
         cornerhits += 1;
       } else if ((pos.x >= 50) || (pos.y >= 50) || (pos.y <= -50) || (pos.x <= -50)) {
-        console.log("edge hit");
         edgehits += 1;
       }
       break;
