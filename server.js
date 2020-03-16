@@ -98,14 +98,19 @@ var cursorupdate = setInterval(function() {
       }
       if ((pos.x >= 50) && (pos.y >= 50)) {
         console.log("corner hit");
+        cornerhits += 1;
       } else if ((pos.x >= 50) && (pos.y <= -50)) {
         console.log("corner hit");
+        cornerhits += 1;
       } else if ((pos.x <= -50) && (pos.y <= -50)) {
         console.log("corner hit");
+        cornerhits += 1;
       } else if ((pos.x <= -50) && (pos.y >= 50)) {
         console.log("corner hit");
+        cornerhits += 1;
       } else if ((pos.x >= 50) || (pos.y >= 50) || (pos.y <= -50) || (pos.x <= -50)) {
         console.log("edge hit");
+        edgehits += 1;
       }
       break;
   }
