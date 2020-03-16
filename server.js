@@ -44,7 +44,7 @@ client.on("a", (msg) => {
       break;
     case "dvd!cursor":
       if (!argcat || argcat == "") {
-        chat("Modes: on // off // frantic");
+        chat("Modes: on // off");
       } else {
         switch (argcat) {
           case "on":
@@ -58,12 +58,6 @@ client.on("a", (msg) => {
             cursormode = "none";
             pos = {x: -500, y: -500};
             break;
-          case "frantic":
-            ctoggle = true;
-            pos = {x: 5, y: 5};
-            vel = {x: 10, y: 15};
-            cursormode = "frantic";
-            break;
         }
       }
       break;
@@ -72,6 +66,8 @@ client.on("a", (msg) => {
 
 var pos = {x: -42, y: 5};
 var vel = {x: 2/5, y: 2/7};
+var cornerhits;
+var edgehits;
 
 var cursor = setInterval(function() {
   client.sendArray([{m:'m', x: client.getOwnParticipant().x = pos.x + 50, y: client.getOwnParticipant().y = pos.y + 50}]);
@@ -80,7 +76,6 @@ var cursor = setInterval(function() {
 var cursorupdate = setInterval(function() {
   switch (cursormode) {
     case "dvd":
-    case "frantic":
       pos.x += vel.x;
       pos.y += vel.y;
       if (pos.x >= 50) {
@@ -94,6 +89,11 @@ var cursorupdate = setInterval(function() {
       }
       if (pos.y <= -50) {
           vel.y = -vel.y;
+      }
+      
+      if (pos.x = -50 && pos.y = -50) {
+        cornerhits += 1;
+        
       }
       break;
   }
