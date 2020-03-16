@@ -96,17 +96,17 @@ var cursorupdate = setInterval(function() {
       if (pos.y <= -50) {
           vel.y = -vel.y;
       }
-      if (pos.x <= -50 && pos.y >= -50) {
-        cornerhits += 1;
-        chat("test corner");
-      } else if (pos.x <= -50 || pos.x >= 50) {
-        edgehits += 1;
-        chat("test edge");
-      } else if (pos.y <= -50 || pos.y >= 50) {
-        edgehits += 1;
-        chat("test edge")
+      if ((pos.x >= 50) && (pos.y >= 50)) {
+        console.log("corner hit");
+      } else if ((pos.x >= 50) && (pos.y <= -50)) {
+        console.log("corner hit");
+      } else if ((pos.x <= -50) && (pos.y <= -50)) {
+        console.log("corner hit");
+      } else if ((pos.x <= -50) && (pos.y >= 50)) {
+        console.log("corner hit");
+      } else if ((pos.x >= 50) || (pos.y >= 50) || (pos.y <= -50) || (pos.x <= -50)) {
+        console.log("edge hit");
       }
       break;
   }
-  console.log(pos.x + " : " + pos.y);
 }, 25);
