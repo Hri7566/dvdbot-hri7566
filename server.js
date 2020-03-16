@@ -49,7 +49,7 @@ client.on("a", (msg) => {
         switch (argcat) {
           case "on":
             ctoggle = true;
-            pos = {x: 5, y: 5};
+            pos = {x: (Math.random() * 100) - 50, y: (Math.random() * 100) - 50};
             vel = {x: 2/5, y: 2/7};
             cursormode = "dvd";
             break;
@@ -90,10 +90,12 @@ var cursorupdate = setInterval(function() {
       if (pos.y <= -50) {
           vel.y = -vel.y;
       }
-      
-      if (pos.x = -50 && pos.y = -50) {
+      if (pos.x == -50 && pos.y == -50) {
         cornerhits += 1;
-        
+      } else if (pos.x == -50 || pos.x == 50) {
+        edgehits += 1;
+      } else if (pos.y == -50 || pos.y == 50) {
+        edgehits += 1;
       }
       break;
   }
