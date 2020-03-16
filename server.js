@@ -58,16 +58,22 @@ client.on("a", (msg) => {
             cursormode = "none";
             pos = {x: -500, y: -500};
             break;
+          default:
+            chat("invalid :P");
+            break;
         }
       }
+      break;
+    case "dvd!stats":
+      chat("Edge hits: " + edgehits + " | Corner hits: " + cornerhits);
       break;
   }
 });
 
-var pos = {x: -42, y: 5};
+var pos = {x: (Math.random() * 100) - 50, y: (Math.random() * 100) - 50};
 var vel = {x: 2/5, y: 2/7};
-var cornerhits;
-var edgehits;
+var cornerhits = 0;
+var edgehits = 0;
 
 var cursor = setInterval(function() {
   client.sendArray([{m:'m', x: client.getOwnParticipant().x = pos.x + 50, y: client.getOwnParticipant().y = pos.y + 50}]);
@@ -90,13 +96,17 @@ var cursorupdate = setInterval(function() {
       if (pos.y <= -50) {
           vel.y = -vel.y;
       }
-      if (pos.x == -50 && pos.y == -50) {
+      if (pos.x <= -50 && pos.y >= -50) {
         cornerhits += 1;
-      } else if (pos.x == -50 || pos.x == 50) {
+        chat("test corner");
+      } else if (pos.x <= -50 || pos.x >= 50) {
         edgehits += 1;
-      } else if (pos.y == -50 || pos.y == 50) {
+        chat("test edge");
+      } else if (pos.y <= -50 || pos.y >= 50) {
         edgehits += 1;
+        chat("test edge")
       }
       break;
   }
+  console.log(pos.x + " : " + pos.y);
 }, 25);
