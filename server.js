@@ -79,7 +79,7 @@ console.log(stats);
 
 var cursor = setInterval(function() {
   client.sendArray([{m:'m', x: client.getOwnParticipant().x = pos.x + 50, y: client.getOwnParticipant().y = pos.y + 50}]);
-});
+}, 16);
 
 var cursorupdate = setInterval(function() {
   switch (cursormode) {
