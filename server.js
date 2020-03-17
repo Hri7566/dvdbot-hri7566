@@ -1,4 +1,4 @@
-var http = require("http");
+const http = require("http");
 
 http
   .createServer(function(request, response) {
@@ -13,6 +13,7 @@ console.log("HTTP Host Established");
 
 const MPPClient = require('mpp-client-xt');
 const client = new MPPClient("http://www.multiplayerpiano.com", undefined);
+const fs = require('fs');
 
 client.start();
 
@@ -65,15 +66,17 @@ client.on("a", (msg) => {
       }
       break;
     case "dvd!stats":
-      chat("Edge hits: " + edgehits + " | Corner hits: " + cornerhits);
+      chat("Edge hits: " + stats.edgehits + " | Corner hits: " + stats.cornerhits);
       break;
   }
 });
 
 var pos = {x: (Math.random() * 100) - 50, y: (Math.random() * 100) - 50};
 var vel = {x: 2/5, y: 2/7};
-var cornerhits = 0;
-var edgehits = 0;
+var stats = {
+  cornerhits: 0,
+  edgehits: 0
+}
 
 var cursor = setInterval(function() {
   client.sendArray([{m:'m', x: client.getOwnParticipant().x = pos.x + 50, y: client.getOwnParticipant().y = pos.y + 50}]);
@@ -97,16 +100,22 @@ var cursorupdate = setInterval(function() {
           vel.y = -vel.y;
       }
       if ((pos.x >= 50) && (pos.y >= 50)) {
-        cornerhits += 1;
+        stats.cornerhits += 1;
       } else if ((pos.x >= 50) && (pos.y <= -50)) {
-        cornerhits += 1;
+        stats.cornerhits += 1;
       } else if ((pos.x <= -50) && (pos.y <= -50)) {
-        cornerhits += 1;
+        stats.cornerhits += 1;
       } else if ((pos.x <= -50) && (pos.y >= 50)) {
-        cornerhits += 1;
+        stats.cornerhits += 1;
       } else if ((pos.x >= 50) || (pos.y >= 50) || (pos.y <= -50) || (pos.x <= -50)) {
-        edgehits += 1;
+        stats.edgehits += 1;
       }
       break;
+      fs.writeFile("stats.json", JSON.stringify(stats), {
+        if (err) {
+          console.log("stats.json couldn't be saved!");
+          return console.log(err);
+        }
+      });
   }
 }, 25);
