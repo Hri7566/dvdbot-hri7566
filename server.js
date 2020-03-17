@@ -73,10 +73,9 @@ client.on("a", (msg) => {
 
 var pos = {x: (Math.random() * 100) - 50, y: (Math.random() * 100) - 50};
 var vel = {x: 2/5, y: 2/7};
-var stats = {
-  cornerhits: 0,
-  edgehits: 0
-}
+var statsraw = fs.readFileSync('stats.json');
+var stats = JSON.parse(statsraw);
+console.log(stats);
 
 var cursor = setInterval(function() {
   client.sendArray([{m:'m', x: client.getOwnParticipant().x = pos.x + 50, y: client.getOwnParticipant().y = pos.y + 50}]);
@@ -110,12 +109,13 @@ var cursorupdate = setInterval(function() {
       } else if ((pos.x >= 50) || (pos.y >= 50) || (pos.y <= -50) || (pos.x <= -50)) {
         stats.edgehits += 1;
       }
-      break;
-      fs.writeFile("stats.json", JSON.stringify(stats), {
+      let statsjson = JSON.stringify(stats);
+      fs.writeFile("stats.json", statsjson, 'utf8', function (err) {
         if (err) {
           console.log("stats.json couldn't be saved!");
           return console.log(err);
         }
       });
+      break;
   }
 }, 25);
