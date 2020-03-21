@@ -41,7 +41,7 @@ client.on("a", (msg) => {
   
   switch (cmd) {
     case "dvd!help":
-      chat("cmds: dvd!help // dvd!cursor // dvd!stats");
+      chat("cmds: dvd!help // dvd!cursor // dvd!stats // dvd!about");
       break;
     case "dvd!cursor":
       if (!argcat || argcat == "") {
@@ -67,6 +67,9 @@ client.on("a", (msg) => {
       break;
     case "dvd!stats":
       chat("Edge hits: " + stats.edgehits + " | Corner hits: " + stats.cornerhits);
+      break;
+    case "dvd!about":
+      chat("Made by Hri7566 in his free time :)");
       break;
   }
 });
