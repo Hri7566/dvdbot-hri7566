@@ -19,7 +19,7 @@ client.start();
 
 client.on("hi", () => {
   setTimeout(function() {
-    client.sendArray([{m:'userset', set:{name:"dvdbot [dvd!help](made by Hri7566)"}}]);
+    client.sendArray([{m:'userset', set:{name:"hri's dvdbot [dvd!help]"}}]);
   })
   
   client.setChannel("✧𝓡𝓟 𝓡𝓸𝓸𝓶✧");
