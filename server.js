@@ -1,16 +1,3 @@
-const http = require("http");
-
-http
-  .createServer(function(request, response) {
-    response.writeHead(200, { "Content-Type": "text/plain" });
-    response.end(
-      "welcome to hri's bot page :)\nthis is just here so heroku/glitch doesn't freak out"
-    );
-  })
-  .listen(process.env.PORT || 3000);
-
-console.log("HTTP Host Established");
-
 const MPPClient = require('mpp-client-xt');
 const client = new MPPClient("http://www.multiplayerpiano.com", undefined);
 const fs = require('fs');
