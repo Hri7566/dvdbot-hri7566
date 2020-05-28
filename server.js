@@ -1,5 +1,5 @@
 const MPPClient = require('mpp-client-xt');
-const client = new MPPClient("http://www.multiplayerpiano.com", undefined);
+const client = new MPPClient("wss://ts.terrium.net:8443", undefined);
 const fs = require('fs');
 
 client.start();
@@ -9,7 +9,7 @@ client.on("hi", () => {
     client.sendArray([{m:'userset', set:{name:"hri's dvdbot [dvd!help]"}}]);
   })
   
-  client.setChannel("✧𝓡𝓟 𝓡𝓸𝓸𝓶✧");
+  client.setChannel("lobby");
 });
 
 function chat(string) {
