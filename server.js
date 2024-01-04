@@ -1,5 +1,5 @@
 const MPPClient = require('mpp-client-xt');
-const client = new MPPClient("wss://ts.terrium.net:8443", undefined);
+const client = new MPPClient("wss://mpp.hri7566.info:8443", undefined);
 const fs = require('fs');
 
 client.start();
